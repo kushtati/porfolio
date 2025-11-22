@@ -25,6 +25,28 @@
     box-sizing: border-box;
 }
 
+/* Performance optimization */
+.navbar,
+.hero-content,
+.btn {
+    will-change: transform;
+}
+
+section {
+    content-visibility: auto;
+}
+
+/* Performance optimization */
+.navbar,
+.hero-content,
+.btn {
+    will-change: transform;
+}
+
+section {
+    content-visibility: auto;
+}
+
 html {
     scroll-behavior: smooth;
     font-size: 16px;
@@ -1270,9 +1292,4 @@ section {
         width: 100%; /* Les boutons prennent toute la largeur */
         padding: 15px 20px;
     }
-}
-@font-face {
-    font-family: 'MaPolice';
-    src: url('...');
-    font-display: swap; /* <--- AJOUTEZ CECI */
 }

@@ -38,29 +38,36 @@ navLinks.forEach(link => {
 // ============================================
 const navbar = document.querySelector('.navbar');
 let lastScroll = 0;
+let ticking = false;
 
 window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
-    
-    // Ajouter classe scrolled et ombre au scroll
-    if (currentScroll > 50) {
-        navbar.classList.add('scrolled');
-        navbar.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.1)';
-    } else {
-        navbar.classList.remove('scrolled');
-        navbar.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)';
+    if (!ticking) {
+        window.requestAnimationFrame(() => {
+            const currentScroll = window.pageYOffset;
+            
+            // Ajouter classe scrolled et ombre au scroll
+            if (currentScroll > 50) {
+                navbar.classList.add('scrolled');
+                navbar.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.1)';
+            } else {
+                navbar.classList.remove('scrolled');
+                navbar.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)';
+            }
+            
+            // Cacher/afficher navbar au scroll (optionnel)
+            if (currentScroll > lastScroll && currentScroll > 500) {
+                // Scroll vers le bas - cacher navbar
+                navbar.style.transform = 'translateY(-100%)';
+            } else {
+                // Scroll vers le haut - afficher navbar
+                navbar.style.transform = 'translateY(0)';
+            }
+            
+            lastScroll = currentScroll;
+            ticking = false;
+        });
+        ticking = true;
     }
-    
-    // Cacher/afficher navbar au scroll (optionnel)
-    if (currentScroll > lastScroll && currentScroll > 500) {
-        // Scroll vers le bas - cacher navbar
-        navbar.style.transform = 'translateY(-100%)';
-    } else {
-        // Scroll vers le haut - afficher navbar
-        navbar.style.transform = 'translateY(0)';
-    }
-    
-    lastScroll = currentScroll;
 });
 
 // ============================================
@@ -228,7 +235,7 @@ skillBars.forEach(bar => {
 // ============================================
 const contactForm = document.querySelector('.contact-form');
 
-contactForm.addEventListener('submit', (e) => {
+contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     
     // Récupérer les données du formulaire
@@ -252,14 +259,25 @@ contactForm.addEventListener('submit', (e) => {
         return;
     }
     
-    // Simuler l'envoi (remplacer par votre logique d'envoi réelle)
-    console.log('Données du formulaire:', formData);
-    
-    // Afficher message de succès
-    showNotification('Message envoyé avec succès! Je vous répondrai bientôt.', 'success');
-    
-    // Réinitialiser le formulaire
-    contactForm.reset();
+    // Envoyer via Formspree
+    try {
+        const response = await fetch(contactForm.action, {
+            method: 'POST',
+            body: new FormData(contactForm),
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+        
+        if (response.ok) {
+            showNotification('Message envoyé avec succès! Je vous répondrai bientôt.', 'success');
+            contactForm.reset();
+        } else {
+            showNotification('Erreur lors de l\'envoi. Veuillez réessayer.', 'error');
+        }
+    } catch (error) {
+        showNotification('Erreur de connexion. Veuillez réessayer.', 'error');
+    }
 });
 
 // ============================================

@@ -5,8 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Portfolio professionnel - Développeur Web">
     <title>kushtati</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23667eea;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23764ba2;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='20' fill='url(%23grad)'/%3E%3Ctext x='50' y='70' font-family='Arial,sans-serif' font-size='60' font-weight='bold' fill='white' text-anchor='middle'%3EK%3C/text%3E%3C/svg%3E">
+    
+    <!-- Stylesheets -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    
+    <!-- Scripts -->
     <script src="script.js" defer></script>
 </head>
 <body>
@@ -35,9 +43,12 @@
     <section id="accueil" class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1 class="hero-title">Bonjour, je suis <span class="highlight">Ibrahim Barry</span></h1>
+                <h1 class="hero-title">
+                    <span class="greeting">Bonjour!</span>
+                    <span class="intro">je suis <span class="highlight">Ibrahim Barry</span></span>
+                </h1>
                 <p class="hero-subtitle">Développeur Web Full Stack junior</p>
-                <p class="hero-description">Je crée des expériences web modernes et performantes</p>
+                <p class="hero-description"><span class="typed-text"></span></p>
                 <div class="hero-buttons">
                     <button onclick="window.location.href='#projets'" class="btn btn-primary">Voir mes projets</button>
                     <button onclick="window.location.href='#contact'" class="btn btn-secondary">Me contacter</button>
@@ -76,7 +87,7 @@
                             <i class="fas fa-phone"></i>
                             <span>Téléphone: +224 623 93 63 13</span>
                         </div>
-                        <a href="documents/Ibrahim_Barry_CV.pdf" class="btn btn-primary btn-cv" download>Télécharger mon CV</a>
+                        <a href="cv.ibrahim barry.pdf" class="btn btn-primary btn-cv" download>Télécharger mon CV</a>
                     </div>
                 </div>
             </div>
@@ -290,7 +301,7 @@
                             <i class="fas fa-envelope"></i>
                             <div>
                                 <h4>Email</h4>
-                                <p>ib362392.com</p>
+                                <p>ib362392@gmail.com</p>
                             </div>
                         </div>
                         <div class="contact-item">
@@ -309,7 +320,7 @@
                         </div>
                     </div>
                 </div>
-                <form class="contact-form">
+                <form class="contact-form" action="https://formspree.io/f/mblbzdyv" method="post">
                     <div class="form-group">
                         <input type="text" id="name" name="name" autocomplete="name" required>
                         <label for="name">Nom complet</label>
