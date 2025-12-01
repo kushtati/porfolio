@@ -44,7 +44,7 @@ export const PROJECTS: Project[] = [
     description: "Portfolio moderne et responsive avec animations fluides, scroll reveal bidirectionnel et design sunset gradient optimisé pour les performances.",
     techStack: ["React", "TypeScript", "Vite", "Tailwind CSS"],
     repoUrl: "https://github.com/kushtati/porfolio",
-    demoUrl: "https://porfolio.vercel.app",
+    demoUrl: "https://portfolio-sepia-deux.vercel.app",
     imageUrl: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=1200&h=800&fit=crop&q=80"
   },
   {
